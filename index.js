@@ -6,28 +6,24 @@ const axios = require('axios')
 const dotenv = require('dotenv')
 dotenv.config()
 
-// const server = http.createServer((req, res) => {
-//     res.statusCode = 200
-//     res.setHeader('Content-Type', 'text/plain')
-//     res.end('Hello World\n')
-// })
 const app = express()
-// app.get('/', (req, res) => {
-//     res.send('Hello World')
-// })
 
 app.get('/', async (req, res) => {
     const response = await axios({
         method: 'GET',
-        url: `${process.env.WEATHER_BASE_URL}/current.json?key=${process.env.WEATHER_API_KEY}&q=SeaTac&aqi=no$lang=en`
+        url: `${process.env.WEATHER_BASE_URL}/current.json`,
+        params: {
+            key: process.env.WEATHER_API_KEY,
+            q: 'Seattle',
+            aqi: 'no',
+            lang: 'en'
+        }
     })
 
     const { data } = response
     res.send({ data })
 })
-// server.listen(port, hostname, () => {
-//     console.log(`Server running at http://${hostname}:${port}/`)
-// })
+
 app.listen(port, () => {
     console.log(`Server running at port ${port}`)
 })
