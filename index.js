@@ -20,7 +20,6 @@ app.get('/', async (req, res) => {
     const response = await axios({
         method: 'GET',
         url: `${process.env.WEATHER_BASE_URL}/current.json?key=${process.env.WEATHER_API_KEY}&q=SeaTac&aqi=no$lang=en`
-        // url: `http://api.weatherapi.com/v1/current.json?key=074ee11a96af4448b55205236210611&q=SeaTac&aqi=no&lang=en`
     })
 
     const { data } = response
