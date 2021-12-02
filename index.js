@@ -9,10 +9,26 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+const firebase = require('firebase-admin')
+
+const serviceAccount = require('./serviceAccountKey.json')
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: 'https://weartheweather-1eee6-default-rtdb.firebaseio.com/'
+})
+
+const db = firebase.database()
+const ref = db.ref('clothingItems')
+ref.on('value', (snapshot) => {
+    console.log(snapshot.val());
+}, (errorObject) => {
+    console.log('The read failed: ' + errorObject.name);
+});
+
 const app = express()
 
-const url = process.env.MONGODB_DATABASE_URI
-mongoose.connect(url)
+// const url = process.env.MONGODB_DATABASE_URI
+// mongoose.connect(url)
 
 app.use(cors())
 app.use(express.json())

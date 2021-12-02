@@ -11,7 +11,7 @@ const clothingIconSchema = new mongoose.Schema({
     tags: [{
         type: String
     }],
-    url: {
+    source: {
         type: String,
         required: true,
         unique: true

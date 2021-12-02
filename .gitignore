@@ -1,1 +1,4 @@
 .env
+serviceAccountKey.json
+firebase-setup.js
+node_modules/
