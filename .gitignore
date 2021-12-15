@@ -2,3 +2,4 @@
 serviceAccountKey.json
 firebase-setup.js
 node_modules/
+firebase-connection-example.js
